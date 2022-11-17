@@ -1,0 +1,6 @@
+com/example/person/Person.class
+com/example/person/jackson/PersonSerializer.class
+com/example/person/jsonb/PersonWrongAdapter.class
+com/example/person/jackson/PersonWrongSerializer.class
+com/example/person/jsonb/PersonAdapter.class
+com/example/person/jackson/PersonDeserializer.class
