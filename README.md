@@ -1,4 +1,4 @@
-# Java JSON Custome serializer/deserializer
+# Java JSON Custom serializer/deserializer
 This code example showcases: 
 * a Jackson custom serializer/deserializer 
 * and a custom JSON-B with Yasson adapter
