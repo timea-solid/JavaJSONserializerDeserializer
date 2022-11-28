@@ -22,7 +22,7 @@ public class PersonWrongAdapter implements JsonbAdapter<Person, JsonObject> {
 
         if (person.pets != null) {
             final var arrayBuilder = Json.createArrayBuilder();
-            person.pets.forEach(onePet -> arrayBuilder.add(onePet));
+            person.pets.forEach(arrayBuilder::add);
             result.add("pets", arrayBuilder.build());
         }
 

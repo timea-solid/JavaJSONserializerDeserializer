@@ -39,10 +39,8 @@ public class PersonSerializer extends StdSerializer<Person> {
         if (person.degree != null) {
             jgen.writeFieldName("degree");
             jgen.writeStartObject();
-            final var itCStatus = person.degree.entrySet().iterator();
-            while (itCStatus.hasNext()) {
-                final var entry = itCStatus.next();
-                jgen.writePOJOField(entry.getKey(), entry.getValue());
+            for (final var itCStatus : person.degree.entrySet()) {
+                jgen.writePOJOField(itCStatus.getKey(), itCStatus.getValue());
             }
             jgen.writeEndObject();
         }

@@ -27,15 +27,14 @@ public class PersonAdapter implements JsonbAdapter<Person, JsonObject> {
 
         if (person.pets != null) {
             final var arrayBuilder = Json.createArrayBuilder();
-            person.pets.forEach(onePet -> arrayBuilder.add(onePet));
+            person.pets.forEach(arrayBuilder::add);
             result.add("pets", arrayBuilder.build());
         }
 
         if (person.degree != null) {
-            final var itCSubject = person.degree.entrySet().iterator();
             final var objectBuilder = Json.createObjectBuilder();
-            while (itCSubject.hasNext()) {
-                addRightJsonType(objectBuilder, itCSubject.next());
+            for (final var itCStatus : person.degree.entrySet()) {
+                addRightJsonType(objectBuilder, itCStatus);
             }
             result.add("degree", objectBuilder.build());
         }
@@ -75,7 +74,7 @@ public class PersonAdapter implements JsonbAdapter<Person, JsonObject> {
         }
         if (entry.getValue() instanceof JsonArray) {
             final var arrayBuilder = Json.createArrayBuilder();
-            ((JsonArray) entry.getValue()).forEach(oneValue -> arrayBuilder.add(oneValue));
+            ((JsonArray) entry.getValue()).forEach(arrayBuilder::add);
             final var jsonArray = arrayBuilder.build();
             objectBuilder.add(entry.getKey(), jsonArray);
         }
@@ -84,9 +83,8 @@ public class PersonAdapter implements JsonbAdapter<Person, JsonObject> {
         }
         if (entry.getValue() instanceof JsonObject) {
             final var object = Json.createObjectBuilder();
-            final var it = ((JsonObject) entry.getValue()).entrySet().iterator();
-            while (it.hasNext()) {
-                addRightJsonType(object, it.next());
+            for (final var it : ((JsonObject) entry.getValue()).entrySet()) {
+                addRightJsonType(object, it);
             }
             objectBuilder.add(entry.getKey(), object);
         }

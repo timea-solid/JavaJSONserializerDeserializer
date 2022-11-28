@@ -44,9 +44,7 @@ public class PersonDeserializer extends StdDeserializer<Person> {
         if (node.get("degree") != null) {
             final JsonNode degree = node.get("degree");
             final Map<String, Object> finalDegree = new HashMap<>();
-            degree.fields().forEachRemaining(field -> {
-                finalDegree.put(field.getKey(), field.getValue());
-            });
+            degree.fields().forEachRemaining(field -> finalDegree.put(field.getKey(), field.getValue()));
             person.degree = finalDegree;
         }
 
